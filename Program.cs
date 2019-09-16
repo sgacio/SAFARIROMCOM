@@ -69,38 +69,49 @@ namespace SAFARIROMCOM
       }
     }
 
-    static void animalsSeenUpdate()
-    {
-      var db = new SafariContext();
-      var updateTheseKids = db.Trip.FirstOrDefault(vacation => vacation.species == "Albert Strange");
-      if (updateTheseKids != null)
-      {
-        updateTheseKids.NumberOfTimesSeen = 7;
-        updateTheseKids.LocationLastSeen = "Gym";
-        db.SaveChanges();
-      }
+    // static void animalsSeenUpdate()
+    // {
+    //   var db = new SafariContext();
+    //   var updateTheseKids = db.Trip.FirstOrDefault(vacation => vacation.species == "Albert Strange");
+    //   if (updateTheseKids != null)
+    //   {
+    //     updateTheseKids.NumberOfTimesSeen = 7;
+    //     updateTheseKids.LocationLastSeen = "Gym";
+    //     db.SaveChanges();
+    //   }
 
-      //   var alberts = db.Trip.Where(tr => tr.species == "Albert Strange");
-      //   foreach (var albert in alberts)
-      //   {
-      //     albert.LocationLastSeen = "dessert";
-      //   }
-      db.SaveChanges();
-    }
+    //   var alberts = db.Trip.Where(tr => tr.species == "Albert Strange");
+    //   foreach (var albert in alberts)
+    //   {
+    //     albert.LocationLastSeen = "dessert";
+    //   }
+    //   db.SaveChanges();
+    // }
 
     static void MarkDoesntLikeTheDessert()
     {
       var db = new SafariContext();
-      var deleteTheDessert = db.Trip.Where(area => area.LocationLastSeen == "")
+      var deleteTheDessert = db.Trip.Where(area => area.LocationLastSeen == "dessert");
+      db.Trip.RemoveRange(deleteTheDessert);
+      db.SaveChanges();
+    }
+
+    static void CountTheAnimals()
+    {
+      var db = new SafariContext();
+      var animalCount = db.Trip.Sum(views => views.NumberOfTimesSeen);
+      Console.WriteLine(animalCount);
     }
 
     static void Main(string[] args)
     {
       Console.WriteLine("Hello World!");
       //   SeedData();
-      animalsSeen();
-      animalsSeenUpdate();
-      whereISeeYou();
+      //   animalsSeen();
+      //   animalsSeenUpdate();
+      //   whereISeeYou();
+      //   MarkDoesntLikeTheDessert();
+      //   CountTheAnimals();
     }
   }
 }
