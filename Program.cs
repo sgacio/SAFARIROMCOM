@@ -103,6 +103,16 @@ namespace SAFARIROMCOM
       Console.WriteLine(animalCount);
     }
 
+    static void LionsTigersAndBearsOhMy()
+    {
+      var db = new SafariContext();
+      var lions = db.Trip.Where(thing => thing.species == "lion" || thing.species == "tiger" || thing.species == "bear").Sum(thing => thing.NumberOfTimesSeen);
+      //   var Tigers = db.Trip.Where(thing => thing.species == "tiger").Sum(thing => thing.NumberOfTimesSeen);
+      //   var Bears = db.Trip.Where(thing => thing.species == "bear").Sum(thing => thing.NumberOfTimesSeen);
+      //   var total = lions + Tigers + Bears;
+      Console.WriteLine(lions);
+    }
+
     static void Main(string[] args)
     {
       Console.WriteLine("Hello World!");
@@ -112,6 +122,7 @@ namespace SAFARIROMCOM
       //   whereISeeYou();
       //   MarkDoesntLikeTheDessert();
       //   CountTheAnimals();
+      LionsTigersAndBearsOhMy();
     }
   }
 }

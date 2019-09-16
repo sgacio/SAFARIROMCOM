@@ -1,3 +1,5 @@
+using System;
+
 namespace SAFARIROMCOM
 {
   public class Safari
@@ -9,5 +11,7 @@ namespace SAFARIROMCOM
     public int NumberOfTimesSeen { get; set; }
 
     public string LocationLastSeen { get; set; }
+
+    public DateTime LastTimeSeen { get; set; }
   }
 }
